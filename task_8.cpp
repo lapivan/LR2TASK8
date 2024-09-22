@@ -1,6 +1,4 @@
 #include <iostream>
-#include <cmath>
-
 
 double mysqrt(double x) {
    int terms = 20;
@@ -22,6 +20,11 @@ double mysqrt(double x) {
     }
 
     return guess;
+}
+double myacos(double x) {
+ const double pi = 3.1415926535;
+ double res = (pi / 2) - (x + ((x * x * x) / 6) + ((3 * x * x * x * x * x) / 40) + ((15 * x * x * x * x * x * x * x) / 336) + ((105 * x * x * x * x * x * x * x * x * x) / 3456) );
+ return res;
 }
 
 int main() {
@@ -58,21 +61,21 @@ int main() {
     std::cout << "Длины медиан: " << m1 << ' ' << m2 << ' '<< m3 << std::endl;
     //биссектрисы
     double b1, b2, b3;
-    b3 = (2 * (sqrt(l1 * l2 * p * (p - l3))/ (l1 + l2)));
-    b2 = (2 * sqrt(l1 * l3 * p * (p - l2))/ (l1 + l3));
-    b1 = (2 * sqrt(l3 * l2 * p * (p - l1))/ (l2 + l3));
+    b3 = (2 * (mysqrt(l1 * l2 * p * (p - l3))/ (l1 + l2)));
+    b2 = (2 * mysqrt(l1 * l3 * p * (p - l2))/ (l1 + l3));
+    b1 = (2 * mysqrt(l3 * l2 * p * (p - l1))/ (l2 + l3));
     std::cout << "Длины биссектрис: " << b1 << ' ' << b2 << ' '<< b3 << std::endl;
     //значения углов 
     double cos1, cos2, cos3;
     const double pi = 3.14159265;
-    cos1 = ((pow(l2, 2) + pow(l3, 2) - pow(l1, 2)) / (2 * l2 *l3));
-    cos2 = ((pow(l3, 2) + pow(l1, 2) - pow(l2, 2)) / (2 * l1 *l3));
-    cos3 = ((pow(l2, 2) + pow(l1, 2) - pow(l3, 2)) / (2 * l2 *l1));
-    std::cout << "Углы треугольника(в радианах): " << acos(cos1) << ' ' << acos(cos2) << ' '<< acos(cos3) << std::endl;
-    std::cout << "Углы треугольника(в градусах): " << (acos(cos1)) * 180 / pi << ' ' << (acos(cos2)) * 180 / pi << ' ' << (acos(cos3)) * 180 / pi << std::endl;
+    cos1 = (((l2 * l2) + (l3 * l3) - (l1 * l1)) / (2 * l2 *l3));
+    cos2 = (((l3 * l3) + (l1 * l1) - (l2 * l2)) / (2 * l1 *l3));
+    cos3 = (((l2 * l2) + (l1 * l1) - (l3 * l3)) / (2 * l2 *l1));
+    std::cout << "Углы треугольника(в радианах): " << myacos(cos1) << ' ' << myacos(cos2) << ' '<< myacos(cos3) << std::endl;
+    std::cout << "Углы треугольника(в градусах): " << (myacos(cos1)) * 180 / pi << ' ' << (myacos(cos2)) * 180 / pi << ' ' << (myacos(cos3)) * 180 / pi << std::endl;
     double s1, s2, s3, r1, r2;
     //радиусы вписанной и описанной окружноси
-    s1 = sqrt(p * (p-l1) * (p-l2) * (p-l3)); // первая формула для площади
+    s1 = mysqrt(p * (p-l1) * (p-l2) * (p-l3)); // первая формула для площади
     r1 = s1 / p;
     r2 = (l1 * l2 * l3) / (4 * s1);
     std::cout << "Радиус вписанной окружности: " << r1 << std::endl;
@@ -80,9 +83,9 @@ int main() {
     //длины и площади вписанной и описанной окружностей
     double sc1, sc2, lc1, lc2;
     lc1 = 2 * pi * r1;
-    sc1 = pi * pow (r1, 2);
+    sc1 = pi * r1 * r1;
     lc2 = 2 * pi * r2;
-    sc2 = pi * pow (r2, 2);
+    sc2 = pi * r2 * 2;
     std::cout << "Длина вписанной окружности: " << lc1 << std::endl;
     std::cout << "Длина описанной окружности: " << lc2 << std::endl;
     std::cout << "Площадь вписанной окружности: " << sc1 << std::endl;
