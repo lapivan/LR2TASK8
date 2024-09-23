@@ -6,6 +6,9 @@
             "command": "/usr/bin/g++",
             "args": [
                 "-fdiagnostics-color=always",
+                "-fsanitize=address",
+                "-fsanitize=undefined",
+                "-fsanitize=leak",
                 "-g",
                 "${file}",
                 "-o",
