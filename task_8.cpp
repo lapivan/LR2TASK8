@@ -2,19 +2,12 @@
 
 double mysqrt(double x) {
    int terms = 20;
-    if (x < 0) {
-        std::cerr << "Ошибка: нельзя вычислить квадратный корень отрицательного числа." << std::endl;
-        return -1;
-    }
-
-    // Начальное приближение
     double guess = x / 2.0; // Начинаем с половины числа
     double previous_guess;
 
     for (int i = 0; i < terms; ++i) {
         previous_guess = guess;
         guess = (guess + x / guess) / 2.0; // Метод Ньютона
-        // Проверяем, достигли ли мы достаточной точности
         if (guess == previous_guess)
             break;
     }
@@ -44,7 +37,7 @@ int main() {
     //расчет сторон треугольника
     l1 = mysqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1)) ; 
     l2 = mysqrt((x3 - x2) * (x3 - x2) + (y3 - y2) * (y3 - y2)) ; 
-    l3 = mysqrt((x3 - x1) * (x3 - x1) + (y3 - y1) * (y3 - y1)) ; ;
+    l3 = mysqrt((x3 - x1) * (x3 - x1) + (y3 - y1) * (y3 - y1)) ;
     std::cout << "Длины сторон: " << l1 << ' ' << l2 << ' '<< l3 << std::endl;
     double h1, h2, h3, p;
     p = (l1+l2+l3) / 2; // полупериметр
